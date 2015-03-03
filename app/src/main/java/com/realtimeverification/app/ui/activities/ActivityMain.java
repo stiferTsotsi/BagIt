@@ -7,7 +7,6 @@ import android.view.MenuItem;
 
 import com.realtimeverification.app.R;
 
-
 public class ActivityMain extends ActionBarActivity {
 
 	@Override
@@ -15,7 +14,6 @@ public class ActivityMain extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 	}
-
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
