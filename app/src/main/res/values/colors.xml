@@ -1,0 +1,65 @@
+<resources>
+
+    <!-- Design Colours -->
+    <color name="colour_one">#0CC9ED</color>
+    <color name="colour_one_selector">#B30CC9ED</color>
+    <color name="colour_two">#92D314</color>
+    <color name="colour_two_selector">#B392D314</color>
+    <color name="colour_three">#4C4C4C</color>
+    <color name="colour_three_selector">#B34C4C4C</color>
+    <color name="colour_four">#999999</color>
+    <color name="colour_four_selector">#B3999999</color>
+    <color name="colour_five">#F89C1C</color>
+    <color name="colour_five_selector">#B3F89C1C</color>
+    <color name="colour_six">#ED225B</color>
+    <color name="colour_six_selector">#B3ED225B</color>
+    <color name="colour_seven">#9F33CC</color>
+    <color name="colour_seven_selector">#B39F33CC</color>
+    <color name="colour_eight">#FFFFFF</color>
+    <color name="colour_eight_selector">#B3FFFFFF</color>
+    <color name="colour_nine">#707070</color>
+    <color name="colour_nine_selector">#B3707070</color>
+    <color name="colour_ten">#49639E</color>
+    <color name="colour_ten_selector">#B349639E</color>
+    <color name="colour_eleven">#F7F7F7</color>
+    <color name="colour_eleven_selector">#B3F7F7F7</color>
+    <color name="colour_twelve">#EBEBEB</color>
+    <color name="colour_twelve_selector">#B3EBEBEB</color>
+    <color name="colour_secondary">#80000000</color>
+    <color name="colour_secondary_selector">#CC000000</color>
+    <color name="colour_secondary_border">#99FFFFFF</color>
+    <color name="colour_sos">#B34C4C4C</color>
+    <color name="colour_default">#CC000000</color>
+    <color name="colour_group_button">#FFEDEDED</color>
+    <color name="colour_group_button_selector">#B3EDEDED</color>
+
+    <!-- Message Loader Colours -->
+    <color name="colour_loader_one"  >#E3F4CB</color>
+    <color name="colour_loader_two"  >#D3EEAD</color>
+    <color name="colour_loader_three">#C2E78E</color>
+    <color name="colour_loader_four" >#B2E16F</color>
+    <color name="colour_loader_five" >#A1DA50</color>
+    <color name="colour_loader_six"  >#92D314</color>
+
+    <!--Black Opacity-->
+    <color name="colour_black_5_percent" >#0D000000</color>
+    <color name="colour_black_10_percent" >#1A000000</color>
+    <color name="colour_black_15_percent" >#26000000</color>
+    <color name="colour_black_20_percent" >#33000000</color>
+    <color name="colour_black_25_percent" >#40000000</color>
+    <color name="colour_black_30_percent" >#4D000000</color>
+    <color name="colour_black_35_percent" >#59000000</color>
+    <color name="colour_black_40_percent" >#66000000</color>
+    <color name="colour_black_45_percent" >#73000000</color>
+    <color name="colour_black_50_percent" >#80000000</color>
+    <color name="colour_black_55_percent" >#8C000000</color>
+    <color name="colour_black_60_percent" >#99000000</color>
+    <color name="colour_black_65_percent" >#A6000000</color>
+    <color name="colour_black_70_percent" >#B3000000</color>
+    <color name="colour_black_75_percent" >#BF000000</color>
+    <color name="colour_black_80_percent" >#CC000000</color>
+    <color name="colour_black_85_percent" >#D9000000</color>
+    <color name="colour_black_90_percent" >#E6000000</color>
+    <color name="colour_black_95_percent" >#F2000000</color>
+
+</resources>
