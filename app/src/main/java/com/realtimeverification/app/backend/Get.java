@@ -1,6 +1,7 @@
 package com.realtimeverification.app.backend;
 
 import android.app.Activity;
+import android.content.Context;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
@@ -20,7 +21,7 @@ public class Get {
 	public Get() {
 	}
 
-	public static Integer getResponseResult(String url, Activity activity) {
+	public static Integer getResponseResult(String url, Context context) {
 
 		int result = 0;
 
@@ -36,7 +37,7 @@ public class Get {
 			}
 
 		} catch (IOException ex) {
-			Toast.makeText(activity.getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
+			Toast.makeText(context, ex.getMessage(), Toast.LENGTH_LONG).show();
 		}
 
 		return result;

@@ -9,15 +9,19 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.realtimeverification.app.R;
 import com.realtimeverification.app.custom.GlobalVariables;
 import com.realtimeverification.app.ui.fragments.FragmentSignUpEmail;
 import com.realtimeverification.app.ui.fragments.FragmentSignUpPassword;
+import com.realtimeverification.app.utils.Validations;
 
 /**
  * Created by vaal on 3/4/2015.
@@ -38,6 +42,8 @@ public class ActivitySignUp extends FragmentActivity {
 		f1 = new FragmentSignUpEmail();
 		f2 = new FragmentSignUpPassword();
 
+		setUpUI();
+
 		pager_sign_up = (ViewPager) findViewById(R.id.viewPager_activity_sign_up);
 		button_sign_up = (Button) findViewById(R.id.button_register_activity_email);
 
@@ -45,6 +51,70 @@ public class ActivitySignUp extends FragmentActivity {
 		pager_sign_up.setAdapter(adapter);
 
 		setListeners(pager_sign_up, button_sign_up);
+		setUpTextChanged();
+	}
+
+	public void setUpUI(){
+		GlobalVariables.EDIT_TEXT_EMAIL = (EditText) findViewById(R.id.edittext_register_email);
+		GlobalVariables.EDIT_TEXT_FULL_NAME =(EditText) findViewById(R.id
+				.edittext_register_full_name);
+		GlobalVariables.EDIT_TEXT_CONTACT_NO = (EditText) findViewById(R.id
+				.edittext_register_contact_no);
+//		GlobalVariables.EDIT_TEXT_PASSWORD = (EditText) findViewById(R.id
+//				.edittext_register_password);
+	}
+
+	public void setUpTextChanged(){
+		GlobalVariables.EDIT_TEXT_EMAIL.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+			}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+
+			}
+		});
+
+		GlobalVariables.EDIT_TEXT_CONTACT_NO.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+			}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+
+			}
+		});
+
+		GlobalVariables.EDIT_TEXT_PASSWORD.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+			}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+
+			}
+		});
 	}
 
 	private class Adapter extends FragmentPagerAdapter {
@@ -128,14 +198,23 @@ public class ActivitySignUp extends FragmentActivity {
 
 	// Used to validate user input before sign up.
 	public boolean validate(int i) {
-		boolean validEmail, validContactNo;
-
+//		boolean validEmail, validContactNo, validName, isValidEmail;
 		switch (i) {
 
 			case 0:
-				String name = GlobalVariables.EDIT_TEXT_FULL_NAME.getText().toString();
-				String email = GlobalVariables.EDIT_TEXT_EMAIL.getText().toString();
-				String contactNo = GlobalVariables.EDIT_TEXT_CONTACT_NO.getText().toString();
+//				String name = GlobalVariables.EDIT_TEXT_FULL_NAME.getText().toString();
+//				String email = GlobalVariables.EDIT_TEXT_EMAIL.getText().toString();
+//				String contactNo = GlobalVariables.EDIT_TEXT_CONTACT_NO.getText().toString();
+//
+//				if(name.isEmpty() && name.length() >2){
+//					GlobalVariables.EDIT_TEXT_FULL_NAME.setError("Name is required!");
+//					validName =false;
+//				}else{
+//					GlobalVariables.EDIT_TEXT_FULL_NAME.setError("");
+//					validName = true;
+//				}
+
+
 //			case 1:
 //				String country = GlobalVariables.SIGN_UP_COUNTRY.getText().toString();
 //				String tel_nr = GlobalVariables.SIGN_UP_TEL_NR.getText().toString();
