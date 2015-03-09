@@ -2,6 +2,7 @@ package com.realtimeverification.app.backend;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
@@ -16,29 +17,51 @@ import java.io.IOException;
 /**
  * Created by vaal on 3/4/2015.
  */
-public class Get {
+public class HttpGetPost {
 
-	public Get() {
+	public HttpGetPost() {
 	}
 
-	public static Integer getResponseResult(String url, Context context) {
+	public static String GET(String url) {
 
-		int result = 0;
+		String result = "";
 
 		HttpGet httpGet = new HttpGet(url);
+
 		HttpClient httpClient = new DefaultHttpClient();
 
-		HttpResponse httpResponse;
+		HttpResponse httpResponse = null;
 		try {
+
 			httpResponse = httpClient.execute(httpGet);
 			if (httpResponse.getStatusLine().getStatusCode() == 200) {
-				String response = EntityUtils.toString(httpResponse.getEntity());
-				result = Integer.parseInt(response);
+				try {
+					String resp_body = EntityUtils.toString(httpResponse.getEntity());
+					result = resp_body;
+					Log.d("Response : ***********", " "+resp_body);
+				} catch (Exception e) {
+					Log.e("sometag", e.getMessage());
+				}
 			}
 
-		} catch (IOException ex) {
-			Toast.makeText(context, ex.getMessage(), Toast.LENGTH_LONG).show();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+		// Handle response back from script.
+		if (httpResponse != null) {
+
+
+		} else { // Error, no response.
+
+		}
+
+
+
+		return result;
+	}
+
+	public static Integer POST() {
+		int result = 0;
 
 		return result;
 	}

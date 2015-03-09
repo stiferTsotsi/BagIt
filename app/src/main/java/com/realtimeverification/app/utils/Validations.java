@@ -1,9 +1,10 @@
 package com.realtimeverification.app.utils;
 
-import android.app.Activity;
 import android.content.Context;
+import android.text.TextUtils;
+import android.util.Log;
 
-import com.realtimeverification.app.backend.Get;
+import com.realtimeverification.app.backend.HttpGetPost;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,50 +13,14 @@ import java.util.regex.Pattern;
  * Created by vaal on 3/4/2015.
  */
 public class Validations {
-
-	/**
-	 * Check if email is not contained in the database
-	 *
-	 * @param value email_address
-	 * @param value activity
-	 * @return 0 or 1
-	 */
-	public static int isAvailableEmail(String value, Context context) {
-		String url = "www.realtimeverificationc.co.za/loading/appCheckEmail.php?email=" + value;
-		return Get.getResponseResult(url, context);
-	}
-
-	/**
-	 * Check if contact number is not contained in the database
-	 *
-	 * @param value contact_number
-	 * @param value activity
-	 * @return 0 or 1
-	 */
-	public static int isAvailableContactNo(String value, Context context) {
-		String url = "www.realtimeverificationc.co.za/loading/appCheckCell.php?cellno=" + value;
-		return Get.getResponseResult(url, context);
-	}
-
 	/**
 	 * Check if value supplied is a valid Internet Email Address
 	 *
-	 * @param value email_address
+	 * @param target email_address
 	 * @return true or false
 	 */
-	public static Boolean isValidEmail(String value) {
-		boolean valid;
-		Pattern pattern;
-		Matcher matcher;
-		final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-		pattern = Pattern.compile(EMAIL_PATTERN);
-		matcher = pattern.matcher(value);
-		if (matcher.matches()) {
-			valid = true;
-		} else {
-			valid = false;
-		}
-		return valid;
+	public final static boolean isValidEmail(CharSequence target) {
+		return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
 	}
 
 	/**
@@ -65,8 +30,35 @@ public class Validations {
 	 * @return true or false
 	 */
 	public static Boolean isValidContactNo(String value) {
+		boolean validTen, validTwelve;
 
-		return null;
+
+		if (value.startsWith("0")) {
+			if (value.trim().length() == 10) {
+				if (value.substring(1, 2) != "0") {
+					validTen = true;
+				} else {
+					validTen = false;
+				}
+			} else {
+				validTen = false;
+			}
+		} else {
+			validTen = false;
+		}
+
+		if (value.startsWith("+27") && value.trim().length() == 12 && value
+				.substring(3, 4) != "0") {
+
+			validTwelve = true;
+		} else {
+			validTwelve = false;
+		}
+
+		if (validTen || validTwelve) {
+			return true;
+		} else {
+			return false;
+		}
 	}
-
 }

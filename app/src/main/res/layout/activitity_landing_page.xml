@@ -8,11 +8,11 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/new_logo"
+        android:src="@drawable/logo"
 
-        android:layout_centerInParent="true"
+
         android:scaleType="fitXY"/>
 
     <LinearLayout
