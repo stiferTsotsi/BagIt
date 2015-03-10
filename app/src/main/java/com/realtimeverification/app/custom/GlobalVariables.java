@@ -1,5 +1,7 @@
 package com.realtimeverification.app.custom;
 
+import android.support.v4.view.ViewPager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -13,6 +15,8 @@ public class GlobalVariables {
 	public static String FULL_NAME="";
 	public static String PASSWORD="";
 
+	public static boolean VALID_SIGN_UP_EMAIL;
+
 	public static EditText SIGN_UP_FULL_NAME;
 	public static EditText SIGN_UP_EMAIL;
 	public static EditText SIGN_UP_CONTACT_NO;
@@ -22,4 +26,6 @@ public class GlobalVariables {
 	public static TextView SIGN_UP_VALID_EMAIL;
 	public static TextView SIGN_UP_VALID_CONTACT;
 
+	public static ViewPager VIEW_PAGER_SIGN_UP;
+	public static Button SIGN_UP_BUTTON;
 }

@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.realtimeverification.app.R;
 import com.realtimeverification.app.backend.HttpGetPost;
 import com.realtimeverification.app.custom.GlobalVariables;
+import com.realtimeverification.app.ui.activities.ActivitySignUp;
 import com.realtimeverification.app.utils.Validations;
 
 /**
@@ -78,7 +79,6 @@ public class FragmentSignUpEmail extends Fragment {
 				new HttpGetResponse().execute("https://www.realtimeverification.co" +
 						".za/loading/appCheckEmail" +
 						".php?email=" + email, "Email");
-
 			}
 
 			@Override
@@ -88,6 +88,7 @@ public class FragmentSignUpEmail extends Fragment {
 
 				} else {
 					GlobalVariables.SIGN_UP_VALID_EMAIL.setText(R.string.invalid_email);
+					GlobalVariables.SIGN_UP_VALID_EMAIL.setTextColor(Color.RED);
 				}
 			}
 		});
@@ -126,10 +127,8 @@ public class FragmentSignUpEmail extends Fragment {
 					return;
 				}
 
-
 				new HttpGetResponse().execute("https://www.realtimeverification.co" +
 						".za/loading/appCheckCell.php?cellno=" + contactNo, "Contact");
-
 			}
 
 			@Override
@@ -137,7 +136,6 @@ public class FragmentSignUpEmail extends Fragment {
 
 			}
 		});
-
 	}
 
 	private class HttpGetResponse extends AsyncTask<String, String, String> {
@@ -151,22 +149,33 @@ public class FragmentSignUpEmail extends Fragment {
 
 		@Override
 		protected void onPostExecute(String result) {
+
+			boolean validEmail = false, validContact = false;
+
 			if (input.equals("Email")) {
 				if (response.equals("0")) {
 					GlobalVariables.SIGN_UP_VALID_EMAIL.setText(R.string.available_email);
 					GlobalVariables.SIGN_UP_VALID_EMAIL.setTextColor(Color.GREEN);
+					validEmail = true;
 				} else {
+
 					GlobalVariables.SIGN_UP_VALID_EMAIL.setText(R.string.unavailable_email);
 					GlobalVariables.SIGN_UP_VALID_EMAIL.setTextColor(Color.RED);
+					validEmail = false;
 				}
 			} else if (input.equals("Contact")) {
 				if (response.equals("0")) {
 					GlobalVariables.SIGN_UP_VALID_CONTACT.setText(R.string.available_contact_no);
 					GlobalVariables.SIGN_UP_VALID_CONTACT.setTextColor(Color.GREEN);
+					validContact = true;
 				} else {
 					GlobalVariables.SIGN_UP_VALID_CONTACT.setText(R.string.unavailable_contact_no);
 					GlobalVariables.SIGN_UP_VALID_CONTACT.setTextColor(Color.RED);
+					validContact = false;
 				}
+			}
+			if (validEmail && validContact) {
+				GlobalVariables.VALID_SIGN_UP_EMAIL = true;
 			}
 		}
 	}

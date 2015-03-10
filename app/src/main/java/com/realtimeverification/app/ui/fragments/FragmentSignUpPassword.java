@@ -18,6 +18,9 @@ public class FragmentSignUpPassword extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		if(GlobalVariables.VALID_SIGN_UP_EMAIL == false){
+			GlobalVariables.VIEW_PAGER_SIGN_UP.setCurrentItem(0);
+		}
 	}
 
 	@Override
