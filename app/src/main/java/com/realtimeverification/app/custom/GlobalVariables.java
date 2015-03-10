@@ -25,7 +25,11 @@ public class GlobalVariables {
 
 	public static TextView SIGN_UP_VALID_EMAIL;
 	public static TextView SIGN_UP_VALID_CONTACT;
+	public static TextView SIGN_UP_VALID_PASSWORD;
+	public static TextView SIGN_UP_VALID_CONFIRM_PASSWORD;
+	public static TextView SIGN_UP_VALID_FULL_NAME;
 
 	public static ViewPager VIEW_PAGER_SIGN_UP;
 	public static Button SIGN_UP_BUTTON;
+
 }

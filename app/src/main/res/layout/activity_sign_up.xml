@@ -1,7 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-    android:id="@+id/container">
+              android:layout_width="match_parent" android:layout_height="match_parent"
+              android:id="@+id/f_register_email1"
+              android:paddingLeft="16dp"
+              android:paddingRight="16dp"
+              android:orientation="vertical">
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/btnSignUp"
+        android:text="@string/button_sign_up"
+        android:onClick="onClickSignUp"/>
+  <RelativeLayout
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/container_full_name"
+      android:layout_above="@+id/edittext_register_full_name">
+      <TextView
+          android:id="@+id/textview_register_full_name"
+          android:text="@string/text_full_name"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" />
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:id="@+id/valid_full_name"
+          android:text="@string/required_value"
+          android:textColor="@android:color/holo_red_dark"
+          android:gravity="right"
+          android:layout_toRightOf="@id/textview_register_full_name"/>
+      </RelativeLayout>
+    <ImageView
+        android:id="@+id/imageview_register_activity_email1_logo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        android:layout_alignParentTop="true"
+        android:scaleType="fitXY"/>
+
+    <EditText
+        android:id="@+id/edittext_register_full_name"
+        android:inputType="text"
+        android:paddingBottom="11dp"
+        android:layout_width="fill_parent"
+        android:hint="@string/hint_full_name"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_above="@+id/container_email"/>
+
+    <RelativeLayout
+        android:id="@+id/container_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/edittext_register_email">
+        <TextView
+            android:id="@+id/textview_register_email"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_email"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_validate_email"
+            android:layout_toRightOf="@id/textview_register_email"
+            android:gravity="right"
+            android:text="@string/required_value"
+            android:textColor="@android:color/holo_red_dark"/>
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/edittext_register_email"
+        android:inputType="textEmailAddress"
+        android:layout_marginBottom="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_email"
+        android:layout_above="@+id/container_contact"/>
+
+
+
+    <RelativeLayout
+        android:id="@+id/container_contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/edittext_register_contact_no">
+        <TextView
+            android:id="@+id/textview_register_contact_no"
+            android:text="@string/text_contact_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_validate_contact_no"
+            android:gravity="right"
+            android:layout_toRightOf="@+id/textview_register_contact_no"
+            android:text="@string/required_value"
+            android:textColor="@android:color/holo_red_dark"/>
+        </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/container_password"
+        android:layout_above="@+id/edittext_register_password">
+        <TextView
+            android:id="@+id/textview_register_password"
+            android:text="@string/text_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/valid_password"
+            android:layout_toRightOf="@+id/textview_register_password"
+            android:gravity="right"
+            android:text="@string/required_value"
+            android:textColor="@android:color/holo_red_dark"/>
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/edittext_register_contact_no"
+        android:inputType="phone"
+        android:paddingBottom="11dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:maxLength="12"
+        android:hint="@string/hint_contact_no"
+        android:layout_above="@id/container_password"/>
+
+
+    <EditText
+        android:id="@+id/edittext_register_password"
+        android:inputType="textPassword"
+        android:paddingBottom="11dp"
+        android:layout_width="fill_parent"
+        android:hint="@string/hint_password"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/container_confirm"
+        android:layout_marginBottom="10dp"/>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/container_confirm"
+        android:layout_above="@+id/edittext_register_confirm">
+        <TextView
+            android:id="@+id/textview_register_confirm"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_passwordC_confirm"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/valid_confirm_password"
+            android:layout_toRightOf="@+id/textview_register_confirm"
+            android:gravity="right"
+            />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/edittext_register_confirm"
+        android:inputType="textPassword"
+        android:paddingBottom="11dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_password_confirm"
+        android:layout_above="@id/btnSignUp"/>
 
 </RelativeLayout>

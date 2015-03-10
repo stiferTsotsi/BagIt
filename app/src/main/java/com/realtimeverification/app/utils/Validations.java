@@ -1,13 +1,7 @@
 package com.realtimeverification.app.utils;
 
-import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
-
-import com.realtimeverification.app.backend.HttpGetPost;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by vaal on 3/4/2015.
@@ -21,6 +15,24 @@ public class Validations {
 	 */
 	public final static boolean isValidEmail(CharSequence target) {
 		return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+	}
+
+	public final static boolean isValidPassword(String value){
+
+		if(value.length() >= 4){
+			return true;
+		}else{
+			return false;
+		}
+
+
+	}
+	public final static boolean isMatchPasswords(String value1, String value2){
+		if(value1.trim().equals(value2.trim())){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	/**

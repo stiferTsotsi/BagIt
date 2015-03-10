@@ -9,7 +9,6 @@
     <string name="button_sign_in">Sign In</string>
     <string name="button_forgot_password">Forgot Password?</string>
     <string name="button_reset_password">Change Password</string>
-    <string name="button_sign_up_next">Next</string>
     <string name="button_sign_up">Sign Up</string>
 
     <!-- EditText Text -->
@@ -33,4 +32,13 @@
     <string name="unavailable_email">Email already in use</string>
     <string name="available_contact_no">available</string>
     <string name="unavailable_contact_no">Number already in use</string>
+    <string name="required_value">*</string>
+    <string name="invalid_password">Password is too short</string>
+    <string name="passwords_not_match">Must match password</string>
+
+    <!-- APP URLS -->
+    <string name="check_email">https://www.realtimeverification.co.za/loading/appCheckEmail.php?email=</string>
+    <string name="check_contact_no">https://www.realtimeverification.co.za/loading/appCheckCell.php?cellno=</string>
+    <string name="register_new_client">https://www.realtimeverification.co.za/loading/appRegisterUser.php</string>
+
 </resources>
