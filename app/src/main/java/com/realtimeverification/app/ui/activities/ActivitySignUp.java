@@ -9,6 +9,7 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.InputFilter;
 import android.text.TextWatcher;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -25,7 +26,6 @@ import org.apache.http.message.BasicNameValuePair;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by vaal on 3/4/2015.
@@ -240,9 +240,6 @@ public class ActivitySignUp extends FragmentActivity {
 				otp = otp + "9" + contactNo.substring(9, 10) + contactNo.substring(2, 3);
 			}
 
-			//TODO: post to server
-
-
 			new CreateNewUser().execute(otp);
 		}
 	}
@@ -309,9 +306,9 @@ public class ActivitySignUp extends FragmentActivity {
 			password = GlobalVariables.SIGN_UP_PASSWORD.getText().toString();
 			confirmPassword = GlobalVariables.SIGN_UP_CONFIRM_PASSWORD.getText().toString();
 
-			Log.d("doInBackground: ", " " + name + " " + contactNo);
+			password= Base64.encodeToString(password.getBytes(),Base64.DEFAULT);
 
-			List<NameValuePair> data = new ArrayList<NameValuePair>(5);
+			List<NameValuePair> data = new ArrayList<NameValuePair>();
 			data.add(new BasicNameValuePair("fullName", name));
 			data.add(new BasicNameValuePair("email", email));
 			data.add(new BasicNameValuePair("contactNo", contactNo));

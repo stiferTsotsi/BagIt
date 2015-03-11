@@ -32,4 +32,5 @@ public class GlobalVariables {
 	public static ViewPager VIEW_PAGER_SIGN_UP;
 	public static Button SIGN_UP_BUTTON;
 
+	public static byte[] RAW_KEY;
 }
