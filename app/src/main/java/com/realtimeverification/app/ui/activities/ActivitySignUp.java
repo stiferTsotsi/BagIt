@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import com.realtimeverification.app.R;
 import com.realtimeverification.app.backend.HttpGetPost;
+import com.realtimeverification.app.backend.NetworkConnectivity;
+import com.realtimeverification.app.custom.CustomAlertDialog;
 import com.realtimeverification.app.custom.GlobalVariables;
 import com.realtimeverification.app.utils.Validations;
 
@@ -37,13 +39,29 @@ public class ActivitySignUp extends FragmentActivity {
 	private String email, contactNo, name, password, confirmPassword;
 	Intent intentSignUp;
 	private List<NameValuePair> otpData;
+	private Boolean isConnectedToInternet;
+	private NetworkConnectivity networkConnectivity;
+	private CustomAlertDialog alert = new CustomAlertDialog();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sign_up);
 		setUpUI();
-		intentSignUp = new Intent(this, ActivityMain.class);
+		intentSignUp = new Intent(this, ActivityOTP.class);
+		setUpInternetConnection();
+	}
+
+	private boolean setUpInternetConnection() {
+		networkConnectivity = new NetworkConnectivity(getApplicationContext());
+		isConnectedToInternet = networkConnectivity.isConnectedToInternet();
+		if (!isConnectedToInternet) {
+			alert.showAletrDialog(ActivitySignUp.this, "Internet Connection error",
+					"Please connect to a working Internet Connection", false);
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	public void setUpUI() {
@@ -235,7 +253,8 @@ public class ActivitySignUp extends FragmentActivity {
 			confirmPassword = GlobalVariables.SIGN_UP_CONFIRM_PASSWORD.getText().toString();
 			//Encrypt password
 			password= Base64.encodeToString(password.getBytes(),Base64.DEFAULT);
-			//TODO: validations
+
+				//TODO: validations
 
 			//Generate OTP
 			int x = (int) (Math.random() * 9);
@@ -259,9 +278,10 @@ public class ActivitySignUp extends FragmentActivity {
 
 			otpData = new ArrayList<NameValuePair>();
 			otpData.add(new BasicNameValuePair("otp", otp));//NameValuePair for SendOTP/RegisterClient
-
+			otpData.add(new BasicNameValuePair("contactNo", contactNo));
 			GlobalVariables.DATA = data;
-			GlobalVariables.OTP = otp;
+			GlobalVariables.OTP = otp; // SetUp NaveValuePair for SentOTP/CreateUser
+
 			new SendOTP().execute();
 		}
 	}

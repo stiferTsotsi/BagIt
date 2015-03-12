@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.realtimeverification.app.R;
 import com.realtimeverification.app.backend.HttpGetPost;
+import com.realtimeverification.app.backend.NetworkConnectivity;
+import com.realtimeverification.app.custom.CustomAlertDialog;
 import com.realtimeverification.app.custom.GlobalVariables;
 
 import org.apache.http.NameValuePair;
@@ -26,27 +28,31 @@ import java.util.List;
 public class ActivityOTP extends FragmentActivity {
 
 	private EditText editTextOTP;
-	private TextView textViewTitle;
 	private ProgressDialog progressDialog;
 	private String res;
 	private Intent intentSignUp;
+	private Boolean isConnectedToInternet;
+	private NetworkConnectivity networkConnectivity;
+	private CustomAlertDialog alert = new CustomAlertDialog();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_otp);
-		setUpUI();
+		editTextOTP = (EditText) findViewById(R.id.edittext_otp);
 		intentSignUp = new Intent(this, ActivityMain.class);
 	}
 
-	private void setUpUI() {
-		editTextOTP = (EditText) findViewById(R.id.edittext_otp);
-		textViewTitle = (TextView) findViewById(R.id.textview_otp_title);
-
-		String email = GlobalVariables.SIGN_UP_EMAIL.getText().toString();
-
-		textViewTitle.setText(getString(R.string.text_otp_title_1) +" " + email + " " + getString(R
-				.string.text_otp_title_2) );
+	private boolean setUpInternetConnection() {
+		networkConnectivity = new NetworkConnectivity(getApplicationContext());
+		isConnectedToInternet = networkConnectivity.isConnectedToInternet();
+		if (!isConnectedToInternet) {
+			alert.showAletrDialog(ActivityOTP.this, "Internet Connection error",
+					"Please connect to a working Internet Connection", false);
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	public void onClickOTP(View view) {
@@ -54,7 +60,11 @@ public class ActivityOTP extends FragmentActivity {
 			String otp = editTextOTP.getText().toString();
 
 			if (otp.equals(GlobalVariables.OTP)) {
-				new CreateNewUser().execute();
+				if (setUpInternetConnection()) {
+					new CreateNewUser().execute();
+				} else {
+					return;
+				}
 			} else {
 				Toast.makeText(getApplicationContext(), getString(R.string.incorrect_otp),
 						Toast.LENGTH_LONG);
@@ -83,7 +93,11 @@ public class ActivityOTP extends FragmentActivity {
 		protected void onPostExecute(String result) {
 			progressDialog.dismiss();
 			if (res.equals("1")) {
-				startActivity(intentSignUp);
+				alert.showAletrDialog(ActivityOTP.this, getString(R.string.title_otp),
+						getString(R.string.opt_success_message_1)+ " "+GlobalVariables
+								.SIGN_UP_EMAIL.getText().toString()+ " "+ getString(R.string
+								.opt_success_message_2),
+						false);
 			}
 		}
 	}

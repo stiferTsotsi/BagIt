@@ -11,6 +11,7 @@
     <string name="button_reset_password">Change Password</string>
     <string name="button_sign_up">Sign Up</string>
     <string name="button_otp">Confirm OPT</string>
+    <string name="button_request_otp">Request OTP</string>
 
     <!-- TEXT VIEW Text -->
     <string name="text_full_name">Full Name</string>
@@ -18,9 +19,6 @@
     <string name="text_contact_no">Contact Number</string>
     <string name="text_password">Password</string>
     <string name="text_passwordC_confirm">Confirm Password</string>
-    <string name="text_otp_title_1">An email has been sent to</string>
-    <string name="text_otp_title_2">Please click on link provided within the email to
-        confirm your email address.</string>
     <string name="text_otp">Confirm OTP</string>
 
     <!-- EditText Hint -->
@@ -41,16 +39,20 @@
     <string name="required_value">*</string>
     <string name="invalid_password">Password is too short</string>
     <string name="passwords_not_match">Must match password</string>
+    <string name="incorrect_otp">OTP entered is incorrect. Please enter valid OTP or change
+        contact number.</string>
 
     <!-- APP URLS -->
     <string name="check_email">https://www.realtimeverification.co.za/loading/appCheckEmail.php?email=</string>
     <string name="check_contact_no">https://www.realtimeverification.co.za/loading/appCheckCell.php?cellno=</string>
     <string name="register_new_client">https://www.realtimeverification.co.za/loading/appRegisterUser.php</string>
-    <string name="send_otp">https://www.realtimeverification.co.za/loading/appSendOtp
-        .php
-    </string>
+    <string name="send_otp">https://www.realtimeverification.co.za/loading/appSendOtp.php</string>
 
-    <string name="incorrect_otp">OTP entered is incorrect. Please enter valid OTP or
-        change contact number.</string>
-
+    <!-- Alert Messages -->
+    <string name="title_otp">Sending OTP</string>
+    <string name="opt_error_message">The OTP provided is incorrect. Please provide a
+        valid otp or re-enter cellphone number</string>
+    <string name="opt_success_message_1">An email has been sent to</string>
+    <string name="opt_success_message_2">Please click on link provided within the email to
+        confirm your email address.</string>
 </resources>

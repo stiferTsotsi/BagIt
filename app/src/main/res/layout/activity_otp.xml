@@ -7,22 +7,16 @@
         android:layout_height="wrap_content"
         android:src="@drawable/logo"
         android:layout_alignParentTop="true"
-        android:id="@+id/imageView_background"
-        android:layout_marginBottom="10dp"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/text_otp_title_2"
-        android:layout_below="@+id/imageView_background"
-        android:id="@+id/textview_otp_title"
-        android:layout_marginBottom="20dp"/>
+        android:id="@+id/imageView_background"/>
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textview_otp_title"
+        android:layout_below="@+id/imageView_background"
         android:id="@+id/textview_otp"
-        android:text="@string/text_otp"/>
+        android:text="@string/text_otp"
+        android:layout_marginLeft="10dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,12 +24,22 @@
         android:layout_below="@+id/textview_otp"
         android:hint="@string/hint_otp"
         android:inputType="number"
-        android:layout_marginBottom="10dp"/>
+        style="@style/margins"/>
     <Button
         android:id="@+id/btnOTP"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/edittext_otp"
         android:text="@string/button_otp"
-        android:onClick="onClickOTP"/>
+        android:onClick="onClickOTP"
+        style="@style/margins"/>
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnRequestOTP"
+        android:layout_below="@+id/btnOTP"
+        style="@style/margins"
+        android:visibility="invisible"
+        android:enabled="false"
+        android:text="@string/button_request_otp"/>
 </RelativeLayout>
