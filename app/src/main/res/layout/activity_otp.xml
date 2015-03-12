@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        android:layout_alignParentTop="true"
+        android:id="@+id/imageView_background"
+        android:layout_marginBottom="10dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/text_otp_title_2"
+        android:layout_below="@+id/imageView_background"
+        android:id="@+id/textview_otp_title"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview_otp_title"
+        android:id="@+id/textview_otp"
+        android:text="@string/text_otp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edittext_otp"
+        android:layout_below="@+id/textview_otp"
+        android:hint="@string/hint_otp"
+        android:inputType="number"
+        android:layout_marginBottom="10dp"/>
+    <Button
+        android:id="@+id/btnOTP"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edittext_otp"
+        android:text="@string/button_otp"
+        android:onClick="onClickOTP"/>
+</RelativeLayout>

@@ -1,6 +1,7 @@
 package com.realtimeverification.app.ui.activities;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -34,12 +35,15 @@ public class ActivitySignUp extends FragmentActivity {
 	private ProgressDialog progressDialog;
 	private String response, input, res;
 	private String email, contactNo, name, password, confirmPassword;
+	Intent intentSignUp;
+	private List<NameValuePair> otpData;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sign_up);
 		setUpUI();
+		intentSignUp = new Intent(this, ActivityMain.class);
 	}
 
 	public void setUpUI() {
@@ -60,7 +64,6 @@ public class ActivitySignUp extends FragmentActivity {
 		GlobalVariables.SIGN_UP_VALID_CONFIRM_PASSWORD = (TextView) findViewById(R.id
 				.valid_confirm_password);
 		GlobalVariables.SIGN_UP_VALID_FULL_NAME = (TextView) findViewById(R.id.valid_full_name);
-
 
 		setUpTextWatcher();
 	}
@@ -112,7 +115,6 @@ public class ActivitySignUp extends FragmentActivity {
 
 				new HttpGetResponse().execute(getString(R.string.check_email) + email, "Email");
 			}
-
 
 			@Override
 			public void afterTextChanged(Editable s) {
@@ -223,7 +225,16 @@ public class ActivitySignUp extends FragmentActivity {
 	}
 
 	public void onClickSignUp(View view) {
+
 		if (view.getId() == R.id.btnSignUp) {
+
+			name = GlobalVariables.SIGN_UP_FULL_NAME.getText().toString();
+			email = GlobalVariables.SIGN_UP_EMAIL.getText().toString();
+			contactNo = GlobalVariables.SIGN_UP_CONTACT_NO.getText().toString();
+			password = GlobalVariables.SIGN_UP_PASSWORD.getText().toString();
+			confirmPassword = GlobalVariables.SIGN_UP_CONFIRM_PASSWORD.getText().toString();
+			//Encrypt password
+			password= Base64.encodeToString(password.getBytes(),Base64.DEFAULT);
 			//TODO: validations
 
 			//Generate OTP
@@ -238,9 +249,20 @@ public class ActivitySignUp extends FragmentActivity {
 				otp = otp + contactNo.substring(9, 10) + contactNo.substring(2, 3);
 			} else if (otp.length() == 2) {
 				otp = otp + "9" + contactNo.substring(9, 10) + contactNo.substring(2, 3);
-			}
+			} //OTP
 
-			new CreateNewUser().execute(otp);
+			List<NameValuePair> data = new ArrayList<NameValuePair>();
+			data.add(new BasicNameValuePair("fullName", name));
+			data.add(new BasicNameValuePair("email", email));
+			data.add(new BasicNameValuePair("contactNo", contactNo));
+			data.add(new BasicNameValuePair("password", password));
+
+			otpData = new ArrayList<NameValuePair>();
+			otpData.add(new BasicNameValuePair("otp", otp));//NameValuePair for SendOTP/RegisterClient
+
+			GlobalVariables.DATA = data;
+			GlobalVariables.OTP = otp;
+			new SendOTP().execute();
 		}
 	}
 
@@ -286,10 +308,10 @@ public class ActivitySignUp extends FragmentActivity {
 		}
 	}
 
-	private class CreateNewUser extends AsyncTask<String, List<NameValuePair>, String> {
+	private class SendOTP extends AsyncTask<String, String, String>{
 
 		@Override
-		protected void onPreExecute() {
+		protected void onPreExecute(){
 			progressDialog = new ProgressDialog(ActivitySignUp.this);
 			progressDialog.setMessage(Html.fromHtml("Registering user..."));
 			progressDialog.setIndeterminate(false);
@@ -300,32 +322,17 @@ public class ActivitySignUp extends FragmentActivity {
 		@Override
 		protected String doInBackground(String... params) {
 
-			name = GlobalVariables.SIGN_UP_FULL_NAME.getText().toString();
-			email = GlobalVariables.SIGN_UP_EMAIL.getText().toString();
-			contactNo = GlobalVariables.SIGN_UP_CONTACT_NO.getText().toString();
-			password = GlobalVariables.SIGN_UP_PASSWORD.getText().toString();
-			confirmPassword = GlobalVariables.SIGN_UP_CONFIRM_PASSWORD.getText().toString();
-
-			password= Base64.encodeToString(password.getBytes(),Base64.DEFAULT);
-
-			List<NameValuePair> data = new ArrayList<NameValuePair>();
-			data.add(new BasicNameValuePair("fullName", name));
-			data.add(new BasicNameValuePair("email", email));
-			data.add(new BasicNameValuePair("contactNo", contactNo));
-			data.add(new BasicNameValuePair("password", password));
-			data.add(new BasicNameValuePair("otp", params[0]));
-
-			res = HttpGetPost.POST(getString(R.string.register_new_client), data);
-
-			Log.d(" PostExecute **** ", "result: " + res);
+			res = HttpGetPost.POST(getString(R.string.send_otp),otpData);
 			return null;
 		}
 
 		@Override
-		protected void onPostExecute(String result) {
+		protected void onPostExecute(String result){
 			progressDialog.dismiss();
-			if (res.equals("1")) {
-				//TODO: redirect to otp page
+			if(res.equals("1")){
+				startActivity(intentSignUp);
+			}else{
+				//TODO: appropriate action
 			}
 		}
 	}

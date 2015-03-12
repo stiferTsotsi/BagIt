@@ -10,13 +10,18 @@
     <string name="button_forgot_password">Forgot Password?</string>
     <string name="button_reset_password">Change Password</string>
     <string name="button_sign_up">Sign Up</string>
+    <string name="button_otp">Confirm OPT</string>
 
-    <!-- EditText Text -->
+    <!-- TEXT VIEW Text -->
     <string name="text_full_name">Full Name</string>
     <string name="text_email">Email Address</string>
     <string name="text_contact_no">Contact Number</string>
     <string name="text_password">Password</string>
     <string name="text_passwordC_confirm">Confirm Password</string>
+    <string name="text_otp_title_1">An email has been sent to</string>
+    <string name="text_otp_title_2">Please click on link provided within the email to
+        confirm your email address.</string>
+    <string name="text_otp">Confirm OTP</string>
 
     <!-- EditText Hint -->
     <string name="hint_full_name">Enter full name:</string>
@@ -24,6 +29,7 @@
     <string name="hint_contact_no">Enter contact no:</string>
     <string name="hint_password">Enter password</string>
     <string name="hint_password_confirm">Verify password</string>
+    <string name="hint_otp">Enter OTP</string>
 
     <!-- Validation Text -->
     <string name="invalid_email">Invalid email</string>
@@ -40,5 +46,11 @@
     <string name="check_email">https://www.realtimeverification.co.za/loading/appCheckEmail.php?email=</string>
     <string name="check_contact_no">https://www.realtimeverification.co.za/loading/appCheckCell.php?cellno=</string>
     <string name="register_new_client">https://www.realtimeverification.co.za/loading/appRegisterUser.php</string>
+    <string name="send_otp">https://www.realtimeverification.co.za/loading/appSendOtp
+        .php
+    </string>
+
+    <string name="incorrect_otp">OTP entered is incorrect. Please enter valid OTP or
+        change contact number.</string>
 
 </resources>

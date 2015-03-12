@@ -5,6 +5,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.apache.http.NameValuePair;
+
+import java.util.List;
+
 /**
  * Created by vaal on 3/4/2015.
  */
@@ -14,6 +18,8 @@ public class GlobalVariables {
 	public static String CONTACT_NO="";
 	public static String FULL_NAME="";
 	public static String PASSWORD="";
+	public static String OTP;
+	public static List<NameValuePair> DATA;
 
 	public static boolean VALID_SIGN_UP_EMAIL;
 
