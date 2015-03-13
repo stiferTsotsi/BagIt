@@ -271,10 +271,10 @@ public class ActivitySignUp extends FragmentActivity {
 			} //OTP
 
 			List<NameValuePair> data = new ArrayList<NameValuePair>();
-			data.add(new BasicNameValuePair("fullName", name));
-			data.add(new BasicNameValuePair("email", email));
-			data.add(new BasicNameValuePair("contactNo", contactNo));
-			data.add(new BasicNameValuePair("password", password));
+			data.add(new BasicNameValuePair(GlobalVariables.FULL_NAME, name));
+			data.add(new BasicNameValuePair(GlobalVariables.EMAIL_ADDRESS, email));
+			data.add(new BasicNameValuePair(GlobalVariables.CONTACT_NO, contactNo));
+			data.add(new BasicNameValuePair(GlobalVariables.PASSWORD, password));
 
 			otpData = new ArrayList<NameValuePair>();
 			otpData.add(new BasicNameValuePair("otp", otp));//NameValuePair for SendOTP/RegisterClient

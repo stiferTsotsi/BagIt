@@ -7,10 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.Html;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.realtimeverification.app.R;
 import com.realtimeverification.app.backend.HttpGetPost;
@@ -30,7 +27,7 @@ public class ActivityOTP extends FragmentActivity {
 	private EditText editTextOTP;
 	private ProgressDialog progressDialog;
 	private String res;
-	private Intent intentSignUp;
+	private Intent intentSignIn;
 	private Boolean isConnectedToInternet;
 	private NetworkConnectivity networkConnectivity;
 	private CustomAlertDialog alert = new CustomAlertDialog();
@@ -40,7 +37,7 @@ public class ActivityOTP extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_otp);
 		editTextOTP = (EditText) findViewById(R.id.edittext_otp);
-		intentSignUp = new Intent(this, ActivityMain.class);
+		intentSignIn = new Intent(this, ActivitySignUp.class);
 	}
 
 	private boolean setUpInternetConnection() {
@@ -63,12 +60,15 @@ public class ActivityOTP extends FragmentActivity {
 				if (setUpInternetConnection()) {
 					new CreateNewUser().execute();
 				} else {
+
 					return;
 				}
 			} else {
-				Toast.makeText(getApplicationContext(), getString(R.string.incorrect_otp),
-						Toast.LENGTH_LONG);
+				alert.showAletrDialog(ActivityOTP.this, getString(R.string.title_otp),
+						getString(R.string.incorrect_otp),false);
 			}
+		}else{
+
 		}
 	}
 
@@ -98,6 +98,10 @@ public class ActivityOTP extends FragmentActivity {
 								.SIGN_UP_EMAIL.getText().toString()+ " "+ getString(R.string
 								.opt_success_message_2),
 						false);
+				startActivity(intentSignIn);
+			}else if(res.equals("0")){
+//				alert.showAletrDialog(ActivityOTP.this, getString(R.string.title_otp),
+//						getString(R.string.incorrect_otp),false);
 			}
 		}
 	}

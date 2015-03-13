@@ -14,11 +14,13 @@ import java.util.List;
  */
 public class GlobalVariables {
 
-	public static String EMAIL_ADDRESS ="";
-	public static String CONTACT_NO="";
-	public static String FULL_NAME="";
-	public static String PASSWORD="";
+	public static String EMAIL_ADDRESS ="email";
+	public static String CONTACT_NO="contactNo";
+	public static String FULL_NAME="fullName";
+	public static String PASSWORD="password";
+	public static String USERNAME="username";
 	public static String OTP;
+
 	public static List<NameValuePair> DATA;
 
 	public static boolean VALID_SIGN_UP_EMAIL;

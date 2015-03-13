@@ -20,6 +20,7 @@
     <string name="text_password">Password</string>
     <string name="text_passwordC_confirm">Confirm Password</string>
     <string name="text_otp">Confirm OTP</string>
+    <string name="text_username">Username</string>
 
     <!-- EditText Hint -->
     <string name="hint_full_name">Enter full name:</string>
@@ -28,6 +29,7 @@
     <string name="hint_password">Enter password</string>
     <string name="hint_password_confirm">Verify password</string>
     <string name="hint_otp">Enter OTP</string>
+    <string name="hint_username">Enter email</string>
 
     <!-- Validation Text -->
     <string name="invalid_email">Invalid email</string>
@@ -41,6 +43,16 @@
     <string name="passwords_not_match">Must match password</string>
     <string name="incorrect_otp">OTP entered is incorrect. Please enter valid OTP or change
         contact number.</string>
+
+    <!-- Login Validation -->
+    <string-array name="loginMessage">
+        <item>Incorrect Username or Password</item>
+        <item>Sorry, you first need to verify your account from the email that was sent to “email”</item>
+        <item>Your account has not yet been approved by one of our administrators. Please contact activate@realtimeverification.co.za for any queries</item>
+        <item>Successful login</item>
+        <item>Your account was rejected by our admin team. Please contact activate@realtimeverification.co.za for any queries</item>
+        <item>Your account has been suspended. Please contact activate@realtimeverification.co.za for any queries</item>
+    </string-array>
 
     <!-- APP URLS -->
     <string name="check_email">https://www.realtimeverification.co.za/loading/appCheckEmail.php?email=</string>
