@@ -54,11 +54,12 @@
         <item>Your account has been suspended. Please contact activate@realtimeverification.co.za for any queries</item>
     </string-array>
 
-    <!-- APP URLS -->
+    <!-- APP URLS  POST/GET-->
     <string name="check_email">https://www.realtimeverification.co.za/loading/appCheckEmail.php?email=</string>
     <string name="check_contact_no">https://www.realtimeverification.co.za/loading/appCheckCell.php?cellno=</string>
     <string name="register_new_client">https://www.realtimeverification.co.za/loading/appRegisterUser.php</string>
     <string name="send_otp">https://www.realtimeverification.co.za/loading/appSendOtp.php</string>
+    <string name="login">https://www.realtimeverification.co.za/loading/appLogin.php</string>
 
     <!-- Alert Messages -->
     <string name="title_otp">Sending OTP</string>
@@ -67,4 +68,5 @@
     <string name="opt_success_message_1">An email has been sent to</string>
     <string name="opt_success_message_2">Please click on link provided within the email to
         confirm your email address.</string>
+    <string name="alert_login">Log In</string>
 </resources>

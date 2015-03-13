@@ -37,7 +37,7 @@ public class ActivitySignUp extends FragmentActivity {
 	private ProgressDialog progressDialog;
 	private String response, input, res;
 	private String email, contactNo, name, password, confirmPassword;
-	Intent intentSignUp;
+	private Intent intentSignUp;
 	private List<NameValuePair> otpData;
 	private Boolean isConnectedToInternet;
 	private NetworkConnectivity networkConnectivity;
@@ -254,7 +254,7 @@ public class ActivitySignUp extends FragmentActivity {
 			//Encrypt password
 			password= Base64.encodeToString(password.getBytes(),Base64.DEFAULT);
 
-				//TODO: validations
+				//TODO: validations - JUST SENT PASSWORD
 
 			//Generate OTP
 			int x = (int) (Math.random() * 9);
