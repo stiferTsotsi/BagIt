@@ -1,6 +1,8 @@
 package com.realtimeverification.app.ui.activities;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -22,7 +24,7 @@ import java.util.List;
 /**
  * Created by vaal on 3/12/2015.
  */
-public class ActivityOTP extends FragmentActivity {
+public class ActivityOTP extends FragmentActivity implements DialogInterface.OnClickListener{
 
 	private EditText editTextOTP;
 	private ProgressDialog progressDialog;
@@ -37,14 +39,14 @@ public class ActivityOTP extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_otp);
 		editTextOTP = (EditText) findViewById(R.id.edittext_otp);
-		intentSignIn = new Intent(this, ActivitySignUp.class);
+		intentSignIn = new Intent(this, ActivityMain.class);
 	}
 
 	private boolean setUpInternetConnection() {
 		networkConnectivity = new NetworkConnectivity(getApplicationContext());
 		isConnectedToInternet = networkConnectivity.isConnectedToInternet();
 		if (!isConnectedToInternet) {
-			alert.showAletrDialog(ActivityOTP.this, "Internet Connection error",
+			alert.showAlertDialog(ActivityOTP.this, "Internet Connection error",
 					"Please connect to a working Internet Connection", false);
 			return false;
 		} else {
@@ -64,11 +66,23 @@ public class ActivityOTP extends FragmentActivity {
 					return;
 				}
 			} else {
-				alert.showAletrDialog(ActivityOTP.this, getString(R.string.title_otp),
-						getString(R.string.incorrect_otp),false);
+				alert.showAlertDialog(ActivityOTP.this, getString(R.string.title_otp),
+						getString(R.string.incorrect_otp), false);
 			}
 		}else{
 
+		}
+	}
+
+	@Override
+	public void onClick(DialogInterface dialog, int which) {
+		switch(which){
+			case DialogInterface.BUTTON_POSITIVE: // OK
+				startActivity(intentSignIn);
+				break;
+			default:
+				// nothing
+				break;
 		}
 	}
 
@@ -93,14 +107,24 @@ public class ActivityOTP extends FragmentActivity {
 		protected void onPostExecute(String result) {
 			progressDialog.dismiss();
 			if (res.equals("1")) {
-				alert.showAletrDialog(ActivityOTP.this, getString(R.string.title_otp),
-						getString(R.string.opt_success_message_1)+ " "+GlobalVariables
-								.SIGN_UP_EMAIL.getText().toString()+ " "+ getString(R.string
-								.opt_success_message_2),
-						false);
-				startActivity(intentSignIn);
+
+				AlertDialog ad = new AlertDialog.Builder(ActivityOTP.this)
+						.setMessage(getString(R.string.opt_success_message_1) + " " + GlobalVariables
+								.SIGN_UP_EMAIL.getText().toString() + " " + getString(R.string
+								.opt_success_message_2))
+						.setIcon(R.drawable.logo)
+						.setTitle(getString(R.string.title_otp))
+						.setPositiveButton("OK", ActivityOTP.this)
+						.setCancelable(false)
+						.create();
+
+				ad.show();
+
+
+
+
 			}else if(res.equals("0")){
-//				alert.showAletrDialog(ActivityOTP.this, getString(R.string.title_otp),
+//				alert.showAlertDialog(ActivityOTP.this, getString(R.string.title_otp),
 //						getString(R.string.incorrect_otp),false);
 			}
 		}

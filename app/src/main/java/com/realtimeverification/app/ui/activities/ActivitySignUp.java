@@ -11,7 +11,6 @@ import android.text.Html;
 import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -56,7 +55,7 @@ public class ActivitySignUp extends FragmentActivity {
 		networkConnectivity = new NetworkConnectivity(getApplicationContext());
 		isConnectedToInternet = networkConnectivity.isConnectedToInternet();
 		if (!isConnectedToInternet) {
-			alert.showAletrDialog(ActivitySignUp.this, "Internet Connection error",
+			alert.showAlertDialog(ActivitySignUp.this, "Internet Connection error",
 					"Please connect to a working Internet Connection", false);
 			return false;
 		} else {

@@ -50,7 +50,7 @@ public class ActivitySignIn extends FragmentActivity {
 		networkConnectivity = new NetworkConnectivity(getApplicationContext());
 		isConnectedToInternet = networkConnectivity.isConnectedToInternet();
 		if (!isConnectedToInternet) {
-			alert.showAletrDialog(ActivitySignIn.this, "Internet Connection error",
+			alert.showAlertDialog(ActivitySignIn.this, "Internet Connection error",
 					"Please connect to a working Internet Connection", false);
 			return false;
 		} else {
@@ -67,7 +67,8 @@ public class ActivitySignIn extends FragmentActivity {
 			loginData.add(new BasicNameValuePair(GlobalVariables.USERNAME, u));
 			loginData.add(new BasicNameValuePair(GlobalVariables.PASSWORD, p));
 
-			//TODO: Decode Password
+			new SignIn().execute();
+
 		}
 	}
 
@@ -93,7 +94,7 @@ public class ActivitySignIn extends FragmentActivity {
 				return;
 			}
 			progressDialog = new ProgressDialog(ActivitySignIn.this);
-			progressDialog.setMessage(Html.fromHtml("Registering user..."));
+			progressDialog.setMessage(Html.fromHtml("Logging in..."));
 			progressDialog.setIndeterminate(false);
 			progressDialog.setCancelable(false);
 			progressDialog.show();
@@ -116,7 +117,7 @@ public class ActivitySignIn extends FragmentActivity {
 			if (response.equals("3")) {
 				startActivity(intentLogIn);
 			} else {
-				alert.showAletrDialog(ActivitySignIn.this, getString(R.string.alert_login),
+				alert.showAlertDialog(ActivitySignIn.this, getString(R.string.alert_login),
 						getLoginMessage(cnt), false);
 			}
 		}
