@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -104,14 +105,14 @@ public class ActivitySignIn extends FragmentActivity {
 		protected String doInBackground(String... params) {
 
 			response = HttpGetPost.POST(getString(R.string.login), loginData);
-
+			Log.d("  -----------  ", " response: " + response.substring(0,1));
 			return null;
 		}
 
 		@Override
 		protected void onPostExecute(String s) {
 			super.onPostExecute(s);
-			int cnt = Integer.parseInt(response);
+			int cnt = Integer.parseInt(response.substring(0,1));
 			progressDialog.dismiss();
 
 			if (response.equals("3")) {

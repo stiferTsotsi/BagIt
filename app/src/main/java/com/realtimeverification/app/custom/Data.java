@@ -1,21 +1,23 @@
 package com.realtimeverification.app.custom;
 
-import java.io.File;
 import java.util.ArrayList;
 
 /**
  * Created by vaal on 3/17/2015.
  */
-public class Content {
+public class Data {
 
 	private String folderId;
 	private String parentId;
 	private String folderName;
-	private File[] files;
-	private ArrayList<Content> contents;
+	private ArrayList<Data> data;
+	private ArrayList<File> files;
 
-	public Content(){
-
+	public Data(String folderId, String parentId, String folderName, ArrayList<File> files){
+		setFolderId(folderId);
+		setParentId(parentId);
+		setFolderName(folderName);
+		setFiles(files);
 	}
 
 	private void setFolderId(String folderId){
@@ -30,12 +32,15 @@ public class Content {
 		this.folderName = folderName;
 	}
 
-	public void setContents(ArrayList<Content> contents) {
-		this.contents = contents;
+	public void setData(ArrayList<Data> data) {
+		this.data = data;
 	}
 
-	private void setFiles(File[] files){
+	public ArrayList<File> getFiles() {
+		return files;
+	}
 
+	public void setFiles(ArrayList<File> files) {
 		this.files = files;
 	}
 
@@ -51,11 +56,8 @@ public class Content {
 		return folderName;
 	}
 
-	public File[] getFiles() {
-		return files;
-	}
 
-	public ArrayList<Content> getContents() {
-		return contents;
+	public ArrayList<Data> getData() {
+		return data;
 	}
 }

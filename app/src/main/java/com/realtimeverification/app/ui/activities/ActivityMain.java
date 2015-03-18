@@ -1,18 +1,71 @@
 package com.realtimeverification.app.ui.activities;
 
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Html;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.realtimeverification.app.R;
+import com.realtimeverification.app.backend.DataRetriever;
+import com.realtimeverification.app.custom.Data;
+import com.realtimeverification.app.custom.File;
+
+import java.util.ArrayList;
 
 public class ActivityMain extends ActionBarActivity {
+
+	private ArrayList<Data> data;
+	private File file;
+	private DataRetriever dataRetriever;
+	private ProgressDialog progressDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		dataRetriever = DataRetriever.get(getApplication());
+		new RetrieveData().execute();
+	}
+
+	private class RetrieveData extends AsyncTask<String,String,ArrayList<Data>>{
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			progressDialog = new ProgressDialog(ActivityMain.this);
+			progressDialog.setMessage(Html.fromHtml("Loading..."));
+			progressDialog.setIndeterminate(false);
+			progressDialog.setCancelable(false);
+//			progressDialog.show();
+		}
+
+		@Override
+		protected ArrayList<Data> doInBackground(String... params) {
+			//TODO: Remove URL <<>> testing
+			try{
+				Log.d("", " ------------------------------------------------ Loading");
+				data = dataRetriever.getUserData("https://www.realtimeverification.co" +
+						".za/loading/appFiles.php/");
+				for(int i =0; i <data.size(); i ++){
+					Log.d("TESTING DATA ******** ", "Folder name: " + data.get(i).getFolderName()
+							.toString());
+				}
+			}catch (Exception e){
+				Log.e("TESTING DATA _________ ", " " + e.getMessage());
+			}
+
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(ArrayList<Data> datas) {
+			super.onPostExecute(datas);
+//			progressDialog.dismiss();
+		}
 	}
 
 	@Override

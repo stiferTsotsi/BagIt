@@ -14,6 +14,19 @@ import java.util.List;
  */
 public class GlobalVariables {
 
+
+	//JSONObject
+	public static String FOLDER_ID ="folder_id";
+	public static String PARENT_ID ="parent_id";
+	public static String FOLDER_NAME ="folder_name";
+	public static String FILE_ID = "file_id";
+	public static String DOC_NAME = "doc_name";
+	public static String FILE_NAME = "file_name";
+	public static String FILE_URL ="file_url";
+	public static String FILE_LOCATION ="file_location";
+	public static String FOLDER ="Folders";
+	public static String FILE = "files";
+
 	public static String EMAIL_ADDRESS ="email";
 	public static String CONTACT_NO="contactNo";
 	public static String FULL_NAME="fullName";
