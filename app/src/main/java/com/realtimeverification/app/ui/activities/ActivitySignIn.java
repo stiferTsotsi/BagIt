@@ -116,6 +116,11 @@ public class ActivitySignIn extends FragmentActivity {
 
 			if (response.equals("3")) {
 				startActivity(intentLogIn);
+			} else if (response.equals("1")) {
+				alert.showAlertDialog(ActivitySignIn.this, getString(R.string.alert_login),
+						getLoginMessage(cnt)+ " ' " + GlobalVariables.SIGN_UP_EMAIL.getText().toString()
+								+" ' ",
+						false);
 			} else {
 				alert.showAlertDialog(ActivitySignIn.this, getString(R.string.alert_login),
 						getLoginMessage(cnt), false);

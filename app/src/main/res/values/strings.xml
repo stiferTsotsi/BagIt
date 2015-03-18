@@ -47,7 +47,7 @@
     <!-- Login Validation -->
     <string-array name="loginMessage">
         <item>Incorrect Username or Password</item>
-        <item>Sorry, you first need to verify your account from the email that was sent to “email”</item>
+        <item>Sorry, you first need to verify your account from the email that was sent to</item>
         <item>Your account has not yet been approved by one of our administrators. Please contact activate@realtimeverification.co.za for any queries</item>
         <item>Successful login</item>
         <item>Your account was rejected by our admin team. Please contact activate@realtimeverification.co.za for any queries</item>

@@ -38,5 +38,13 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".ui.activities.ActivitySignIn"
+            android:label="Sign IN" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
     </application>
 </manifest>

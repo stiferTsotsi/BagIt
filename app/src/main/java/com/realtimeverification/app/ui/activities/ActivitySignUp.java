@@ -250,10 +250,6 @@ public class ActivitySignUp extends FragmentActivity {
 			contactNo = GlobalVariables.SIGN_UP_CONTACT_NO.getText().toString();
 			password = GlobalVariables.SIGN_UP_PASSWORD.getText().toString();
 			confirmPassword = GlobalVariables.SIGN_UP_CONFIRM_PASSWORD.getText().toString();
-			//Encrypt password
-			password= Base64.encodeToString(password.getBytes(),Base64.DEFAULT);
-
-				//TODO: validations - JUST SENT PASSWORD
 
 			//Generate OTP
 			int x = (int) (Math.random() * 9);

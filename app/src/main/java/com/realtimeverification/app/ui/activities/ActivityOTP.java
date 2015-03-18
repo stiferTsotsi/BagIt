@@ -29,7 +29,7 @@ public class ActivityOTP extends FragmentActivity implements DialogInterface.OnC
 	private EditText editTextOTP;
 	private ProgressDialog progressDialog;
 	private String res;
-	private Intent intentSignIn;
+	private Intent intentToSignIn;
 	private Boolean isConnectedToInternet;
 	private NetworkConnectivity networkConnectivity;
 	private CustomAlertDialog alert = new CustomAlertDialog();
@@ -39,7 +39,7 @@ public class ActivityOTP extends FragmentActivity implements DialogInterface.OnC
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_otp);
 		editTextOTP = (EditText) findViewById(R.id.edittext_otp);
-		intentSignIn = new Intent(this, ActivityMain.class);
+		intentToSignIn = new Intent(this,ActivitySignIn.class);
 	}
 
 	private boolean setUpInternetConnection() {
@@ -69,8 +69,6 @@ public class ActivityOTP extends FragmentActivity implements DialogInterface.OnC
 				alert.showAlertDialog(ActivityOTP.this, getString(R.string.title_otp),
 						getString(R.string.incorrect_otp), false);
 			}
-		}else{
-
 		}
 	}
 
@@ -78,7 +76,7 @@ public class ActivityOTP extends FragmentActivity implements DialogInterface.OnC
 	public void onClick(DialogInterface dialog, int which) {
 		switch(which){
 			case DialogInterface.BUTTON_POSITIVE: // OK
-				startActivity(intentSignIn);
+				startActivity(intentToSignIn);
 				break;
 			default:
 				// nothing
@@ -119,10 +117,6 @@ public class ActivityOTP extends FragmentActivity implements DialogInterface.OnC
 						.create();
 
 				ad.show();
-
-
-
-
 			}else if(res.equals("0")){
 //				alert.showAlertDialog(ActivityOTP.this, getString(R.string.title_otp),
 //						getString(R.string.incorrect_otp),false);
