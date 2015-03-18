@@ -81,10 +81,25 @@ public class DataRetriever {
 		try{
 			jsonObject = new JSONObject(getData(url));
 
-			JSONArray folders = (JSONArray)jsonObject.get("");
+			JSONArray folders = (JSONArray)jsonObject.get("Folders");
+			for(int i =0; i < folders.length(); i++){
+				folerId = (String)((JSONObject)folders.get(i)).get("folder_id");
+				parentId = (String)((JSONObject)folders.get(i)).get("parent_id");
+				folderName = (String)((JSONObject)folders.get(i)).get("folder_name");
+				files = (File[]) ((JSONObject)folders.get(i)).get("folder_id");
+			}
 
 		}catch (Exception e){
 			//TODO: log
+		}
+		return null;
+	}
+
+	public Content getContent(String folderId){
+		for(int i =0; i < contents.size(); i++){
+			if(contents.get(i).getContents().equals(folderId)){
+				return contents.get(i);
+			}
 		}
 		return null;
 	}
