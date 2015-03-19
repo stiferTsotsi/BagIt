@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.realtimeverification.app.R;
 import com.realtimeverification.app.backend.DataRetriever;
-import com.realtimeverification.app.custom.CustomGrid;
+import com.realtimeverification.app.custom.CustomFolderGrid;
 import com.realtimeverification.app.custom.Data;
 import com.realtimeverification.app.custom.File;
 
@@ -79,8 +79,7 @@ public class ActivityMain extends ActionBarActivity {
 				fileNames[i] = data.get(0).getFiles().get(i).getDocName();
 			}
 
-			ArrayList<Data>myData = data;
-
+			ArrayList<Data> myData = data;
 
 			myData.remove(0);
 			final String[] myFolders = new String[myData.size()];
@@ -89,7 +88,7 @@ public class ActivityMain extends ActionBarActivity {
 			}
 
 			if (data != null && myFolders != null) {
-				CustomGrid adapter = new CustomGrid(ActivityMain.this, myFolders);
+				CustomFolderGrid adapter = new CustomFolderGrid(ActivityMain.this,myFolders,fileNames);
 				gridView = (GridView) findViewById(R.id.grid);
 				gridView.setAdapter(adapter);
 				gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

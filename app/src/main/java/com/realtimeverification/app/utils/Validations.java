@@ -24,9 +24,16 @@ public class Validations {
 		}else{
 			return false;
 		}
-
-
 	}
+
+	public static boolean isValidName(String value){
+		if(value !=""){
+			return  true;
+		}else{
+			return false;
+		}
+	}
+
 	public final static boolean isMatchPasswords(String value1, String value2){
 		if(value1.trim().equals(value2.trim())){
 			return true;

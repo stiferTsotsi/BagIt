@@ -17,12 +17,12 @@
         android:textSize="19dp"/>
     <GridView
         android:layout_below="@+id/title"
-        android:numColumns="auto_fit"
-        android:gravity="center"
         android:columnWidth="100dp"
         android:stretchMode="columnWidth"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:gravity="center"
         android:id="@+id/grid"
-        />
+        android:numColumns="auto_fit"/>
+
 </RelativeLayout>

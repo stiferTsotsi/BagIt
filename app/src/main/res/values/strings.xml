@@ -39,6 +39,7 @@
     <string name="available_contact_no">available</string>
     <string name="unavailable_contact_no">Number already in use</string>
     <string name="required_value">*</string>
+    <string name="required">Required</string>
     <string name="invalid_password">Password is too short</string>
     <string name="passwords_not_match">Must match password</string>
     <string name="incorrect_otp">OTP entered is incorrect. Please enter valid OTP or change

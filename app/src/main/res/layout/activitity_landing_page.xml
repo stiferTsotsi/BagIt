@@ -26,20 +26,20 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btnSignIn"
+            android:id="@+id/btnToSignIn"
             android:text="@string/button_sign_in"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
-            android:onClick="OnclickLanding"/>
+            android:onClick="onClickAppLanding"/>
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btnSignUp"
+            android:id="@+id/btnToSignUp"
             android:text="@string/button_sign_up"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
-            android:onClick="onClickLanding"/>
+            android:onClick="onClickAppLanding"/>
         </LinearLayout>
 
 

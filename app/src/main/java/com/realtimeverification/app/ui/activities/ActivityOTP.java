@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -59,11 +60,10 @@ public class ActivityOTP extends FragmentActivity implements DialogInterface.OnC
 			String otp = editTextOTP.getText().toString();
 
 			if (otp.equals(GlobalVariables.OTP)) {
-				if (setUpInternetConnection()) {
-					new CreateNewUser().execute();
-				} else {
-
+				if (!setUpInternetConnection() == true) {
 					return;
+				} else {
+					new CreateNewUser().execute();
 				}
 			} else {
 				alert.showAlertDialog(ActivityOTP.this, getString(R.string.title_otp),
@@ -88,6 +88,7 @@ public class ActivityOTP extends FragmentActivity implements DialogInterface.OnC
 
 		@Override
 		protected void onPreExecute() {
+
 			progressDialog = new ProgressDialog(ActivityOTP.this);
 			progressDialog.setMessage(Html.fromHtml("Registering user..."));
 			progressDialog.setIndeterminate(false);

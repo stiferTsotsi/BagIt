@@ -11,6 +11,7 @@ import android.text.Html;
 import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -41,6 +42,7 @@ public class ActivitySignUp extends FragmentActivity {
 	private Boolean isConnectedToInternet;
 	private NetworkConnectivity networkConnectivity;
 	private CustomAlertDialog alert = new CustomAlertDialog();
+	private boolean isConnected = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -241,6 +243,66 @@ public class ActivitySignUp extends FragmentActivity {
 		});
 	}
 
+	public boolean validate() {
+		boolean valid;
+		boolean vEmail, vName, vContactNo, vPassword;
+
+		if (Validations.isValidName(name) && name.length() > 0) {
+			vName = true;
+			GlobalVariables.SIGN_UP_VALID_FULL_NAME.setText("");
+		} else {
+			GlobalVariables.SIGN_UP_VALID_FULL_NAME.setText(getString(R.string.required));
+			GlobalVariables.SIGN_UP_VALID_FULL_NAME.setTextColor(Color.RED);
+			vName = false;
+		}
+
+		if (email != "" && Validations.isValidEmail
+				(email) && GlobalVariables.SIGN_UP_VALID_EMAIL.getText().toString() != getString(R
+				.string
+				.unavailable_email) && GlobalVariables.SIGN_UP_VALID_EMAIL.getText().toString()
+				!= getString(R.string.invalid_email)) {
+			vEmail = true;
+			GlobalVariables.SIGN_UP_VALID_EMAIL.setText("");
+		} else {
+			GlobalVariables.SIGN_UP_VALID_EMAIL.setText(getString(R.string.required));
+			GlobalVariables.SIGN_UP_VALID_EMAIL.setTextColor(Color.RED);
+			vEmail = false;
+		}
+
+		if (Validations.isValidContactNo(contactNo) && GlobalVariables.SIGN_UP_VALID_CONTACT
+				.getText()
+				.toString() != getString(R
+				.string
+				.unavailable_contact_no) && GlobalVariables.SIGN_UP_VALID_CONTACT.getText()
+				.toString() != getString(R.string.invalid_contact_no) && contactNo != "") {
+			GlobalVariables.SIGN_UP_VALID_CONTACT.setText("");
+			vContactNo = true;
+		} else {
+			GlobalVariables.SIGN_UP_VALID_CONTACT.setText(getString(R.string.required));
+			GlobalVariables.SIGN_UP_VALID_CONTACT.setTextColor(Color.RED);
+			vContactNo = false;
+		}
+
+		if (Validations.isValidPassword(password) && Validations.isMatchPasswords(password,
+				confirmPassword)) {
+			vPassword = true;
+			GlobalVariables.SIGN_UP_VALID_PASSWORD.setText("");
+			GlobalVariables.SIGN_UP_VALID_CONFIRM_PASSWORD.setText("");
+		} else {
+			GlobalVariables.SIGN_UP_VALID_PASSWORD.setText(getString(R.string.required));
+			GlobalVariables.SIGN_UP_VALID_PASSWORD.setTextColor(Color.RED);
+			vPassword = false;
+		}
+
+		if (vName == true && vEmail == true && vContactNo == true && vPassword == true) {
+			valid = true;
+		} else {
+			valid = false;
+		}
+
+		return valid;
+	}
+
 	public void onClickSignUp(View view) {
 
 		if (view.getId() == R.id.btnSignUp) {
@@ -251,33 +313,39 @@ public class ActivitySignUp extends FragmentActivity {
 			password = GlobalVariables.SIGN_UP_PASSWORD.getText().toString();
 			confirmPassword = GlobalVariables.SIGN_UP_CONFIRM_PASSWORD.getText().toString();
 
-			//Generate OTP
-			int x = (int) (Math.random() * 9);
-			x = x + 1;
-			String otp = (x + "") + (((int) (Math.random() * 10000)) + "");
+			if (validate() == true) {
+				//Generate OTP
+				int x = (int) (Math.random() * 9);
+				x = x + 1;
+				String otp = (x + "") + (((int) (Math.random() * 10000)) + "");
 
-			if (otp.length() == 5) {
-			} else if (otp.length() == 4) {
-				otp = otp + contactNo.substring(9, 10);
-			} else if (otp.length() == 3) {
-				otp = otp + contactNo.substring(9, 10) + contactNo.substring(2, 3);
-			} else if (otp.length() == 2) {
-				otp = otp + "9" + contactNo.substring(9, 10) + contactNo.substring(2, 3);
-			} //OTP
+				if (otp.length() == 5) {
+				} else if (otp.length() == 4) {
+					otp = otp + contactNo.substring(9, 10);
+				} else if (otp.length() == 3) {
+					otp = otp + contactNo.substring(9, 10) + contactNo.substring(2, 3);
+				} else if (otp.length() == 2) {
+					otp = otp + "9" + contactNo.substring(9, 10) + contactNo.substring(2, 3);
+				} //OTP
 
-			List<NameValuePair> data = new ArrayList<NameValuePair>();
-			data.add(new BasicNameValuePair(GlobalVariables.FULL_NAME, name));
-			data.add(new BasicNameValuePair(GlobalVariables.EMAIL_ADDRESS, email));
-			data.add(new BasicNameValuePair(GlobalVariables.CONTACT_NO, contactNo));
-			data.add(new BasicNameValuePair(GlobalVariables.PASSWORD, password));
+				List<NameValuePair> data = new ArrayList<NameValuePair>();
+				data.add(new BasicNameValuePair(GlobalVariables.FULL_NAME, name));
+				data.add(new BasicNameValuePair(GlobalVariables.EMAIL_ADDRESS, email));
+				data.add(new BasicNameValuePair(GlobalVariables.CONTACT_NO, contactNo));
+				data.add(new BasicNameValuePair(GlobalVariables.PASSWORD, password));
 
-			otpData = new ArrayList<NameValuePair>();
-			otpData.add(new BasicNameValuePair("otp", otp));//NameValuePair for SendOTP/RegisterClient
-			otpData.add(new BasicNameValuePair("contactNo", contactNo));
-			GlobalVariables.DATA = data;
-			GlobalVariables.OTP = otp; // SetUp NaveValuePair for SentOTP/CreateUser
+				otpData = new ArrayList<NameValuePair>();
+				otpData.add(new BasicNameValuePair("otp", otp));//NameValuePair for SendOTP/RegisterClient
+				otpData.add(new BasicNameValuePair("contactNo", contactNo));
+				GlobalVariables.DATA = data;
+				GlobalVariables.OTP = otp; // SetUp NaveValuePair for SentOTP/CreateUser
 
-			new SendOTP().execute();
+				new SendOTP().execute();
+			} else {
+				return;
+			}
+
+
 		}
 	}
 
@@ -323,32 +391,44 @@ public class ActivitySignUp extends FragmentActivity {
 		}
 	}
 
-	private class SendOTP extends AsyncTask<String, String, String>{
+	private class SendOTP extends AsyncTask<String, String, String> {
+
 
 		@Override
-		protected void onPreExecute(){
-			progressDialog = new ProgressDialog(ActivitySignUp.this);
-			progressDialog.setMessage(Html.fromHtml("Registering user..."));
-			progressDialog.setIndeterminate(false);
-			progressDialog.setCancelable(false);
-			progressDialog.show();
+		protected void onPreExecute() {
+
+			if (setUpInternetConnection()) {
+				progressDialog = new ProgressDialog(ActivitySignUp.this);
+				progressDialog.setMessage(Html.fromHtml("Registering user..."));
+				progressDialog.setIndeterminate(false);
+				progressDialog.setCancelable(false);
+				progressDialog.show();
+				isConnected = true;
+			} else {
+				isConnected = false;
+				return;
+			}
+
 		}
 
 		@Override
 		protected String doInBackground(String... params) {
 
-			res = HttpGetPost.POST(getString(R.string.send_otp),otpData);
+			res = HttpGetPost.POST(getString(R.string.send_otp), otpData);
 			return null;
 		}
 
 		@Override
-		protected void onPostExecute(String result){
-			progressDialog.dismiss();
-			if(res.equals("1")){
-				startActivity(intentSignUp);
-			}else{
-				//TODO: appropriate action
+		protected void onPostExecute(String result) {
+			if (isConnected) {
+				progressDialog.dismiss();
+				if (res.equals("1")) {
+					startActivity(intentSignUp);
+				} else {
+					//TODO: appropriate action
+				}
 			}
+
 		}
 	}
 }
