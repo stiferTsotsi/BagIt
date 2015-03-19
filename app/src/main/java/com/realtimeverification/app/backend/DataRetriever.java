@@ -30,7 +30,7 @@ public class DataRetriever {
 
 	private ArrayList<Data> data;
 	private static DataRetriever sDataRetriever;
-	private static final String TAG ="DATA RETRIEVER ";
+	private static final String TAG = "DATA RETRIEVER ";
 
 	private DataRetriever(Context appContext) {
 	}
@@ -63,16 +63,14 @@ public class DataRetriever {
 					builder.append(line);
 				}
 			} else {
-				Log.e(TAG," Failed to download file");
+				Log.e(TAG, " Failed to download file");
 			}
 
 		} catch (ClientProtocolException e) {
-			Log.e(TAG + "ClientProtocolException ",e.getMessage());
+			Log.e(TAG + "ClientProtocolException ", e.getMessage());
 		} catch (IOException e) {
-			Log.e(TAG +" IOException ",e.getMessage());
+			Log.e(TAG + " IOException ", e.getMessage());
 		}
-
-		Log.d("String Builder ", " ----------  " + builder.toString());
 
 		return builder.toString();
 	}
@@ -85,6 +83,8 @@ public class DataRetriever {
 		JSONObject jsonObject;
 		String folderId, parentId, folderName;
 		String fileId, fileName, fileUrl, docName, fileLocation;
+		int fId, pId;
+
 
 		try {
 			jsonObject = new JSONObject(getData(url));
@@ -92,10 +92,17 @@ public class DataRetriever {
 			JSONArray folders = (JSONArray) jsonObject.get(GlobalVariables.FOLDER);
 			for (int i = 0; i < folders.length(); i++) {
 
-				folderId = (String) ((JSONObject) folders.get(i)).get(GlobalVariables.FOLDER_ID);
+				if (i == 0) {
+					fId = (Integer) ((JSONObject) folders.get(i)).get(GlobalVariables.FOLDER_ID);
+					pId = (Integer) ((JSONObject) folders.get(i)).get(GlobalVariables.PARENT_ID);
+					folderId = String.valueOf(fId);
+					parentId = String.valueOf(pId);
+				} else {
+					folderId = (String) ((JSONObject) folders.get(i)).get(GlobalVariables.FOLDER_ID);
+					parentId = (String) ((JSONObject) folders.get(i)).get(GlobalVariables.PARENT_ID);
+				}
 
 
-				parentId = (String) ((JSONObject) folders.get(i)).get(GlobalVariables.PARENT_ID);
 				folderName = (String) ((JSONObject) folders.get(i)).get(GlobalVariables.FOLDER_NAME);
 
 				ArrayList<File> fileList = new ArrayList<File>();
@@ -117,7 +124,7 @@ public class DataRetriever {
 			}
 
 		} catch (Exception e) {
-			Log.e(TAG + " Exception ",e.getMessage());
+			Log.e(TAG + " Exception ", e.getMessage());
 		}
 		return data;
 	}

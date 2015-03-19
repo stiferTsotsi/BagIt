@@ -60,6 +60,7 @@
     <string name="register_new_client">https://www.realtimeverification.co.za/loading/appRegisterUser.php</string>
     <string name="send_otp">https://www.realtimeverification.co.za/loading/appSendOtp.php</string>
     <string name="login">https://www.realtimeverification.co.za/loading/appLogin.php</string>
+    <string name="data_test_url">https://www.realtimeverification.co.za/loading/appFiles.php/</string>
 
     <!-- Alert Messages -->
     <string name="title_otp">Sending OTP</string>

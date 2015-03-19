@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class ActivityMain extends ActionBarActivity {
 
 	private ArrayList<Data> data;
-	private File file;
+	private ArrayList<File> files;
 	private DataRetriever dataRetriever;
 	private ProgressDialog progressDialog;
 
@@ -31,7 +31,7 @@ public class ActivityMain extends ActionBarActivity {
 		new RetrieveData().execute();
 	}
 
-	private class RetrieveData extends AsyncTask<String,String,ArrayList<Data>>{
+	private class RetrieveData extends AsyncTask<String, String, ArrayList<Data>> {
 
 		@Override
 		protected void onPreExecute() {
@@ -46,16 +46,14 @@ public class ActivityMain extends ActionBarActivity {
 		@Override
 		protected ArrayList<Data> doInBackground(String... params) {
 			//TODO: Remove URL <<>> testing
-			try{
-				Log.d("", " ------------------------------------------------ Loading");
-				data = dataRetriever.getUserData("https://www.realtimeverification.co" +
-						".za/loading/appFiles.php/");
-				for(int i =0; i <data.size(); i ++){
-					Log.d("TESTING DATA ******** ", "Folder name: " + data.get(i).getFolderName()
-							.toString());
+			try {
+				data = dataRetriever.getUserData(getString(R.string.data_test_url));
+				for (int i = 0; i < data.size(); i++) {
+					files = data.get(i).getFiles();
 				}
-			}catch (Exception e){
-				Log.e("TESTING DATA _________ ", " " + e.getMessage());
+
+			} catch (Exception e) {
+				Log.e("ASYNC TASK ", " " + e.getMessage());
 			}
 
 			return null;
