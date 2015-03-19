@@ -72,6 +72,8 @@ public class DataRetriever {
 			Log.e(TAG + " IOException ", e.getMessage());
 		}
 
+		Log.d(" BUILDER ", " " + builder.toString());
+
 		return builder.toString();
 	}
 
@@ -83,7 +85,6 @@ public class DataRetriever {
 		JSONObject jsonObject;
 		String folderId, parentId, folderName;
 		String fileId, fileName, fileUrl, docName, fileLocation;
-		int fId, pId;
 
 
 		try {
@@ -92,16 +93,8 @@ public class DataRetriever {
 			JSONArray folders = (JSONArray) jsonObject.get(GlobalVariables.FOLDER);
 			for (int i = 0; i < folders.length(); i++) {
 
-				if (i == 0) {
-					fId = (Integer) ((JSONObject) folders.get(i)).get(GlobalVariables.FOLDER_ID);
-					pId = (Integer) ((JSONObject) folders.get(i)).get(GlobalVariables.PARENT_ID);
-					folderId = String.valueOf(fId);
-					parentId = String.valueOf(pId);
-				} else {
-					folderId = (String) ((JSONObject) folders.get(i)).get(GlobalVariables.FOLDER_ID);
-					parentId = (String) ((JSONObject) folders.get(i)).get(GlobalVariables.PARENT_ID);
-				}
-
+				folderId = (String) ((JSONObject) folders.get(i)).get(GlobalVariables.FOLDER_ID);
+				parentId = (String) ((JSONObject) folders.get(i)).get(GlobalVariables.PARENT_ID);
 
 				folderName = (String) ((JSONObject) folders.get(i)).get(GlobalVariables.FOLDER_NAME);
 
@@ -121,11 +114,14 @@ public class DataRetriever {
 				}
 				content = new Data(folderId, parentId, folderName, fileList);
 				data.add(content);
+
+
 			}
 
 		} catch (Exception e) {
 			Log.e(TAG + " Exception ", e.getMessage());
 		}
+		Log.d(" ********************** ", " " + data.size());
 		return data;
 	}
 
