@@ -64,6 +64,8 @@ public class ActivitySignIn extends FragmentActivity {
 			String u = txtUsername.getText().toString();
 			String p = txtPassword.getText().toString();
 
+			GlobalVariables.EMAIL_ADDRESS = u;
+
 			loginData = new ArrayList<NameValuePair>();
 			loginData.add(new BasicNameValuePair(GlobalVariables.USERNAME, u));
 			loginData.add(new BasicNameValuePair(GlobalVariables.PASSWORD, p));
@@ -105,23 +107,23 @@ public class ActivitySignIn extends FragmentActivity {
 		protected String doInBackground(String... params) {
 
 			response = HttpGetPost.POST(getString(R.string.login), loginData);
-			Log.d("  -----------  ", " response: " + response.substring(0,1));
+			Log.d("  -----------  ", " response: " + response.substring(2, response.length()));
+
 			return null;
 		}
 
 		@Override
 		protected void onPostExecute(String s) {
 			super.onPostExecute(s);
-			int cnt = Integer.parseInt(response.substring(0,1));
+			int cnt = Integer.parseInt(response.substring(0, 1));
 			progressDialog.dismiss();
 
-			if (response.equals("3")) {
+			if (cnt == 3) {
+				GlobalVariables.RESULT = response.substring(2, response.length());
 				startActivity(intentLogIn);
-			} else if (response.equals("1")) {
+			} else if (response.substring(0, 1).equals("1")) {
 				alert.showAlertDialog(ActivitySignIn.this, getString(R.string.alert_login),
-						getLoginMessage(cnt)+ " ' " + GlobalVariables.SIGN_UP_EMAIL.getText().toString()
-								+" ' ",
-						false);
+						getLoginMessage(cnt) + " ' " + GlobalVariables.EMAIL_ADDRESS + " ' ", false);
 			} else {
 				alert.showAlertDialog(ActivitySignIn.this, getString(R.string.alert_login),
 						getLoginMessage(cnt), false);

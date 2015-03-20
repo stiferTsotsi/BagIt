@@ -3,6 +3,7 @@ package com.realtimeverification.app.ui.activities;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
 import android.util.Log;
@@ -19,6 +20,7 @@ import com.realtimeverification.app.backend.DataRetriever;
 import com.realtimeverification.app.custom.CustomFolderGrid;
 import com.realtimeverification.app.custom.Data;
 import com.realtimeverification.app.custom.File;
+import com.realtimeverification.app.custom.GlobalVariables;
 
 import java.util.ArrayList;
 
@@ -28,8 +30,9 @@ public class ActivityMain extends ActionBarActivity {
 	private ArrayList<File> files;
 	private DataRetriever dataRetriever;
 	private ProgressDialog progressDialog;
-	GridView gridView;
-	TextView title;
+	private GridView gridView;
+	private TextView title;
+	private ActionBar actionBar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,8 @@ public class ActivityMain extends ActionBarActivity {
 		dataRetriever = DataRetriever.get(getApplication());
 		title = (TextView) findViewById(R.id.title);
 
+		actionBar = getSupportActionBar();
+		actionBar.setIcon(R.drawable.ic_launcher);
 		new RetrieveData().execute();
 	}
 
@@ -60,7 +65,8 @@ public class ActivityMain extends ActionBarActivity {
 
 			if (dataRetriever != null) {
 				data = dataRetriever.getUserData
-						(getString(R.string.data_test_url) + "?uid=31");
+						(getString(R.string.data_test_url) +
+								"?uid="+ GlobalVariables.RESULT);
 			} else {
 				Log.d(" ##################### ", "NULL");
 			}
@@ -72,12 +78,13 @@ public class ActivityMain extends ActionBarActivity {
 		protected void onPostExecute(ArrayList<Data> datas) {
 			super.onPostExecute(datas);
 			title.setText(data.get(0).getFolderName());
+			actionBar.setTitle(data.get(0).getFolderName());
+			actionBar.show();
 
 
-			final String[] fileNames = new String[data.size()];
-			for (int i = 0; i < data.size(); i++) {
-				fileNames[i] = data.get(0).getFiles().get(i).getDocName();
-			}
+
+
+
 
 			ArrayList<Data> myData = data;
 
@@ -87,8 +94,18 @@ public class ActivityMain extends ActionBarActivity {
 				myFolders[i] = myData.get(i).getFolderName();
 			}
 
+			Log.d("FOLDER COUNT", " ********* "+myFolders.length);
+
+			if(myFolders.length ==0){
+				title.setText("You don't have any data to display");
+				title.setVisibility(View.VISIBLE);
+			}else{
+				title.setText("");
+				title.setVisibility(View.INVISIBLE);
+			}
+
 			if (data != null && myFolders != null) {
-				CustomFolderGrid adapter = new CustomFolderGrid(ActivityMain.this,myFolders,fileNames);
+				CustomFolderGrid adapter = new CustomFolderGrid(ActivityMain.this,myFolders);
 				gridView = (GridView) findViewById(R.id.grid);
 				gridView.setAdapter(adapter);
 				gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

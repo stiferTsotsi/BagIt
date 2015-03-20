@@ -301,7 +301,7 @@ public class ActivitySignUp extends FragmentActivity {
 		}
 
 		return valid;
-	}
+	} //Validations
 
 	public void onClickSignUp(View view) {
 
@@ -344,8 +344,6 @@ public class ActivitySignUp extends FragmentActivity {
 			} else {
 				return;
 			}
-
-
 		}
 	}
 
@@ -392,8 +390,6 @@ public class ActivitySignUp extends FragmentActivity {
 	}
 
 	private class SendOTP extends AsyncTask<String, String, String> {
-
-
 		@Override
 		protected void onPreExecute() {
 

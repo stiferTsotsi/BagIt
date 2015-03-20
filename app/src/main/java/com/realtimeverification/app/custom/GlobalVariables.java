@@ -37,6 +37,7 @@ public class GlobalVariables {
 	public static List<NameValuePair> DATA;
 
 	public static boolean VALID_SIGN_UP_EMAIL;
+	public static String RESULT;
 
 	public static EditText SIGN_UP_FULL_NAME;
 	public static EditText SIGN_UP_EMAIL;

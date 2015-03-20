@@ -7,32 +7,7 @@
               android:paddingRight="16dp"
               android:orientation="vertical">
 
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/btnSignUp"
-        android:text="@string/button_sign_up"
-        android:onClick="onClickSignUp"/>
-  <RelativeLayout
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:id="@+id/container_full_name"
-      android:layout_above="@+id/edittext_register_full_name">
-      <TextView
-          android:id="@+id/textview_register_full_name"
-          android:text="@string/text_full_name"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content" />
-      <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:id="@+id/valid_full_name"
-          android:text="@string/required_value"
-          android:textColor="@android:color/holo_red_dark"
-          android:gravity="right"
-          android:layout_toRightOf="@id/textview_register_full_name"/>
-      </RelativeLayout>
+
     <ImageView
         android:id="@+id/imageview_register_activity_email1_logo"
         android:layout_width="fill_parent"
@@ -40,6 +15,33 @@
         android:src="@drawable/logo"
         android:layout_alignParentTop="true"
         android:scaleType="fitXY"/>
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/btnSignUp"
+        android:text="@string/button_sign_up"
+        android:onClick="onClickSignUp"/>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/container_full_name"
+        android:layout_above="@+id/edittext_register_full_name">
+        <TextView
+            android:id="@+id/textview_register_full_name"
+            android:text="@string/text_full_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/valid_full_name"
+            android:text="@string/required_value"
+            android:textColor="@android:color/holo_red_dark"
+            android:gravity="right"
+            android:layout_toRightOf="@id/textview_register_full_name"/>
+    </RelativeLayout>
+
 
     <EditText
         android:id="@+id/edittext_register_full_name"
@@ -102,7 +104,7 @@
             android:layout_toRightOf="@+id/textview_register_contact_no"
             android:text="@string/required_value"
             android:textColor="@android:color/holo_red_dark"/>
-        </RelativeLayout>
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -176,5 +178,6 @@
         android:layout_height="wrap_content"
         android:hint="@string/hint_password_confirm"
         android:layout_above="@id/btnSignUp"/>
+
 
 </RelativeLayout>

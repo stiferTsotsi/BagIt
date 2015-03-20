@@ -18,18 +18,16 @@ import com.realtimeverification.app.R;
 public class CustomFolderGrid extends BaseAdapter {
 	private Context context;
 	private final String[] folders;
-	private final String[] files;
 
-	public CustomFolderGrid(Context c, String[] folders, String[] files) {
+	public CustomFolderGrid(Context c, String[] folders) {
 		context = c;
 		this.folders = folders;
-		this.files = files;
 		Log.d("Counter -------- ", " " +getCount() + folders.length);
 	}
 
 	@Override
 	public int getCount() {
-		return folders.length + files.length;
+		return folders.length;
 	}
 
 	@Override
