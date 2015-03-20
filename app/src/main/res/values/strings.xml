@@ -71,4 +71,11 @@
     <string name="opt_success_message_2">Please click on link provided within the email to
         confirm your email address.</string>
     <string name="alert_login">Log In</string>
+
+    <!-- MENU ICONS -->
+    <string name="action_search"></string>
+    <string name="action_location_found"></string>
+    <string name="action_refresh">Refresh</string>
+    <string name="action_help">Help</string>
+
 </resources>

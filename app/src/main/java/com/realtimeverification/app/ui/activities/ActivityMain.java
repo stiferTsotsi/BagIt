@@ -41,9 +41,21 @@ public class ActivityMain extends ActionBarActivity {
 		dataRetriever = DataRetriever.get(getApplication());
 		title = (TextView) findViewById(R.id.title);
 
+
+
 		actionBar = getSupportActionBar();
 		actionBar.setIcon(R.drawable.ic_launcher);
+		actionBar.show();
 		new RetrieveData().execute();
+	}
+
+	protected void setupConfirmationActionBar(ActionBarActivity actionBarActivity, String title) {
+		Log.i("BaseFragment", "setupConfirmationActionBar");
+		actionBarActivity.getSupportActionBar().setDisplayShowHomeEnabled(false);
+		actionBarActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+		actionBarActivity.getSupportActionBar().setDisplayShowTitleEnabled(true);
+		actionBarActivity.getSupportActionBar().setTitle(title);
+		actionBarActivity.getSupportActionBar().setLogo(android.R.color.transparent);
 	}
 
 	private class RetrieveData extends AsyncTask<String, String, ArrayList<Data>> {
@@ -68,7 +80,6 @@ public class ActivityMain extends ActionBarActivity {
 						(getString(R.string.data_test_url) +
 								"?uid="+ GlobalVariables.RESULT);
 			} else {
-				Log.d(" ##################### ", "NULL");
 			}
 
 			return null;
@@ -79,12 +90,6 @@ public class ActivityMain extends ActionBarActivity {
 			super.onPostExecute(datas);
 			title.setText(data.get(0).getFolderName());
 			actionBar.setTitle(data.get(0).getFolderName());
-			actionBar.show();
-
-
-
-
-
 
 			ArrayList<Data> myData = data;
 
@@ -93,8 +98,6 @@ public class ActivityMain extends ActionBarActivity {
 			for (int i = 0; i < myData.size(); i++) {
 				myFolders[i] = myData.get(i).getFolderName();
 			}
-
-			Log.d("FOLDER COUNT", " ********* "+myFolders.length);
 
 			if(myFolders.length ==0){
 				title.setText("You don't have any data to display");
@@ -128,7 +131,7 @@ public class ActivityMain extends ActionBarActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.menu_activity_main, menu);
-		return true;
+		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
@@ -139,9 +142,9 @@ public class ActivityMain extends ActionBarActivity {
 		int id = item.getItemId();
 
 		//noinspection SimplifiableIfStatement
-		if (id == R.id.action_settings) {
-			return true;
-		}
+//		if (id == R.id.action_settings) {
+//			return true;
+//		}
 
 		return super.onOptionsItemSelected(item);
 	}

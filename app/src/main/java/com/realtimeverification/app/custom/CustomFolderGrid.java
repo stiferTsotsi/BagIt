@@ -22,7 +22,6 @@ public class CustomFolderGrid extends BaseAdapter {
 	public CustomFolderGrid(Context c, String[] folders) {
 		context = c;
 		this.folders = folders;
-		Log.d("Counter -------- ", " " +getCount() + folders.length);
 	}
 
 	@Override
@@ -52,8 +51,6 @@ public class CustomFolderGrid extends BaseAdapter {
 			ImageView imageView = (ImageView) grid.findViewById(R.id.grid_image);
 			TextView textView = (TextView) grid.findViewById(R.id.grid_text);
 
-
-			Log.d(" POSITION ", " ******** " + position);
 
 
 //			if(position > (position+1)- folders.length){

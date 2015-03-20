@@ -107,7 +107,6 @@ public class ActivitySignIn extends FragmentActivity {
 		protected String doInBackground(String... params) {
 
 			response = HttpGetPost.POST(getString(R.string.login), loginData);
-			Log.d("  -----------  ", " response: " + response.substring(2, response.length()));
 
 			return null;
 		}
